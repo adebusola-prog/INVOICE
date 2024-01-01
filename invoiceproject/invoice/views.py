@@ -88,4 +88,3 @@ class InvoiceDetailView(View):
         invoice = get_object_or_404(Invoice, pk=invoice_id)
         invoice_items = InvoiceItem.objects.filter(invoice=invoice)
         return render(request, self.template_name, {'invoice': invoice, 'invoice_items': invoice_items})
-
