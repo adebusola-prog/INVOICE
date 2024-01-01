@@ -1,0 +1,29 @@
+{% block content %}
+  <h2>Invoice Detail for {{ invoice.customer.name }} - {{ invoice.date }}</h2>
+  <p>Deposit: {{ invoice.deposit }}</p>
+  <p>Deposit2: {{ invoice.deposit2 }}</p>
+
+  <h3>Invoice Items</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Goods Description</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in invoice_items %}
+        <tr>
+          <td>{{ item.goods_description }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.rate }}</td>
+          <td>{{ item.amount }}</td> 
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>Total Amount: {{ invoice.total_amount }}</p>
+  <p>Balance: {{ invoice.balance }}</p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% block content %}
+  <h2>{{ customer.name }} - Invoices</h2>
+ 
+  {% for invoice in invoices %}
+    <div>
+    <p>invoice_id: {{invoice.id}}</p>
+     
+      <a href="{% url 'invoice:invoice_detail' invoice.id %}">View Details</a>
+    </div>
+    <hr>
+  {% endfor %}
+  
+  <a href="{% url 'invoice:invoice_create' pk=customer.pk %}">Create Invoice</a>
+{% endblock %}

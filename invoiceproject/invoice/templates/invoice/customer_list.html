@@ -1,0 +1,27 @@
+{% block content %}
+  <h2>Customer List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+        <tr>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.address }}</td>
+          <td>{% for phone_number in customer.phone_number %}
+            {{ phone_number }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}</td>
+          <td>
+            <a href="{% url 'invoice:customer_detail' pk=customer.pk %}">View Details</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

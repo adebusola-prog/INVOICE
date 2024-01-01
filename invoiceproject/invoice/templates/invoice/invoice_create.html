@@ -1,0 +1,40 @@
+{% block content %}
+  <h2>Create Invoice for {{ customer.name }}</h2>
+  <form method="post" action="">
+    {% csrf_token %}
+    <div id="formset-container">
+      {{ formset.management_form }}
+      <label for="id_deposit">Deposit:</label>
+      <input type="text" name="deposit" id="id_deposit" value="0" />
+      <br>
+      <label for="id_deposit2">Deposit 2:</label>
+      <input type="text" name="deposit2" id="id_deposit2" value="0" />
+      <br>
+      {% for form in formset %}
+        {{ form.as_table }}
+      {% endfor %}
+    </div>
+    <button type="submit">Create Invoice</button>
+    <br>
+    <button type="button" id="add-form" onclick="addForm()">Add Form</button>
+  </form>
+
+
+
+  <script>
+    function addForm() {
+      const formsetContainer = document.getElementById('formset-container');
+      const totalFormsInput = document.getElementById('id_form-TOTAL_FORMS');
+      const formIndex = parseInt(totalFormsInput.value);
+      console.log('Button clicked!');  // Debugging line
+
+      const managementForm = '{{ formset.management_form  }}';
+      const newForm = managementForm.replace(/__prefix__/g, formIndex);
+      console.log('New Form HTML:', newForm);  // Debugging line
+
+      formsetContainer.insertAdjacentHTML('beforeend', newForm);
+      totalFormsInput.value = formIndex + 1;
+      console.log('New form added. Updated formIndex:', formIndex + 1);  // Debugging line
+    }
+  </script>
+{% endblock %}

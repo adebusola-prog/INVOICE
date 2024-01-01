@@ -1,0 +1,8 @@
+{% block content %}
+  <h2>All Invoices</h2>
+  <ul>
+    {% for invoice in invoices %}
+      <li><a href="{% url 'invoice:invoice_detail' invoice.id %}">{{ invoice.customer.name }} - {{ invoice.date }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

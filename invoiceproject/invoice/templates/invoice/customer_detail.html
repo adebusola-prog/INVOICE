@@ -1,0 +1,10 @@
+{% block content %}
+  <h2>{{ customer.name }} - Invoices</h2>
+ 
+  {% for invoice in invoices %}
+    <p>{{ invoice.deposit }}</p>
+  
+  {% endfor %}
+  <a href="{% url 'invoice:customer_invoices' pk=customer.pk %}">View Invoices</a>
+  <a href="{% url 'invoice:invoice_create' pk=customer.pk %}">Create Invoice</a>
+{% endblock %}
